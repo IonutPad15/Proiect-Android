@@ -13,6 +13,7 @@ public class MeniuriActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.meniuri_activity);
+        //RecyclerView recyclerView = findViewById(R.id.meniuriRecycleView);
         setContentView(R.layout.recycler_view);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         //LayoutManager: modalitatea in care sunt afisate pe ecran
