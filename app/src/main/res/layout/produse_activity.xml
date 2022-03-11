@@ -3,10 +3,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <include layout="@layout/toolbar"/>
     <ImageView
         android:id="@+id/meniu_image"
         android:layout_width="match_parent"
         android:layout_gravity="center"
+        android:background="@color/teal_700"
         android:layout_weight="30"
         android:layout_height="128dp"/>
 
@@ -16,6 +18,7 @@
         android:layout_weight="10"
         android:textStyle="bold"
         android:background="@color/purple_200"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"/>
@@ -35,16 +38,24 @@
             android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_weight="1"
             android:gravity="left"/>
         <TextView
 
             android:id = "@+id/pret"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="left" />
-
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="ShowPopUp"
+        android:text="Adauga in cos"
+        android:textColor="@color/black" />
 </LinearLayout>

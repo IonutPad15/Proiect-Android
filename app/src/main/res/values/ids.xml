@@ -2,4 +2,5 @@
 <resources>
     <item name="meniu_item" type="id"/>
     <item name="produs_item" type="id"/>
+    <item name="cos_item" type="id"/>
 </resources>

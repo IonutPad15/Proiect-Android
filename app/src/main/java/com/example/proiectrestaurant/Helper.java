@@ -30,7 +30,7 @@ public class Helper {
         ArrayList<Produs> produse = new ArrayList<Produs>(5);
         Produs p = new Produs("Cartofi prajiti",500,2,"g");
         produse.add(p);
-        p = new Produs("Coca Cola",500,1,"l");
+        p = new Produs("Coca Cola",500,1,"ml");
         produse.add(p);
         p = new Produs("Aripioare picante",400,6,"g");
         produse.add(p);

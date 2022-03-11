@@ -9,6 +9,7 @@
         android:layout_height="64dp"/>
     <TextView
         android:id = "@+id/nume"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -19,15 +20,18 @@
     <TextView
         android:id = "@+id/pret"
         android:textSize="18sp"
+        android:textColor="@color/black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="left"
         android:layout_gravity="center"/>
-    <TextView
+    <Button
+        android:id="@+id/btnmeniu"
 
-        android:text="Ceva nou"
+        android:text="Adauga in cos"
         android:textSize="18sp"
+        android:textColor="@color/black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

@@ -8,6 +8,7 @@
         android:id = "@+id/cantitate"
         android:textSize="18sp"
         android:layout_width="0dp"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="left"
@@ -16,9 +17,10 @@
         android:id = "@+id/nume"
         android:textSize="18sp"
         android:layout_width="0dp"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:gravity="left"/>
 
     <TextView
@@ -26,6 +28,7 @@
         android:id = "@+id/gramaj"
         android:textSize="18sp"
         android:layout_width="0dp"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="right"
@@ -35,6 +38,7 @@
         android:id = "@+id/um"
         android:textSize="18sp"
         android:layout_width="0dp"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="left"
