@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total:"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_weight="50"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_weight="50"
+            android:gravity="start"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adresa de e-mail:"
+        android:textStyle="normal"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"/>
+    <EditText
+        android:id="@+id/mailtxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="(introduceti o adresa valida)"
+        android:gravity="center"
+        android:textSize="18sp"/>
+    <Button
+        android:id="@+id/btnComanda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comanda"/>
+</LinearLayout>

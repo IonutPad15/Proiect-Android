@@ -1,5 +1,9 @@
 package com.example.proiectrestaurant;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +21,10 @@ public class CosAdapter extends RecyclerView.Adapter<CosAdapter.MyViewHolder> {
     List<Meniu> meniuri;
     Action<String> onMenuSelected;
     OnMenuListener onMenuListener ;
+    Context context;
+    View rootView;
+    TextView txtTotalView;
+    //TextView txtTotalView =CosActivity.txtTotalView;
     public CosAdapter(List<Meniu> meniuri,Action<String> onMenuSelected) {
         this.meniuri = meniuri;
         this.onMenuSelected = onMenuSelected;
@@ -30,11 +38,14 @@ public class CosAdapter extends RecyclerView.Adapter<CosAdapter.MyViewHolder> {
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cos_layout_item,parent,false);
+        context = parent.getContext();
+        rootView = ((Activity)context).getWindow().getDecorView().findViewById(android.R.id.content);
+        txtTotalView = rootView.findViewById(R.id.total);
         return new MyViewHolder(view, onMenuListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Meniu meniu = meniuri.get(position);
         holder.itemView.setTag(R.id.cos_item, meniu.nume);
         holder.nameTxtView.setText(meniu.nume);
@@ -47,12 +58,55 @@ public class CosAdapter extends RecyclerView.Adapter<CosAdapter.MyViewHolder> {
         else{
             holder.itemView.setVisibility(View.VISIBLE);
         }
-        //holder.btn.setOnClickListener(BtnClick(position));
+        holder.btnminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        double pret = meniu.pret;
+        final int[] cantitate = {comanda.getMenuCount(position)};
+        final double[] total = {0};
+        txtTotalView.setText(CosActivity.pretTotal+"lei");
+        holder.btnplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cantitate[0] = Integer.parseInt(holder.quantTxtView.getText().toString());
+                cantitate[0]++;
+                CosActivity.pretTotal+=pret;
+                Log.d("CosAdapter",CosActivity.pretTotal+"");
+                txtTotalView.setText(CosActivity.pretTotal+"lei");
+                comanda.setMenuCount(position,cantitate[0]);
+                total[0] = pret*cantitate[0];
+                holder.quantTxtView.setText(comanda.getMenuCount(position)+"");
+                holder.pretTxtView.setText(total[0]+" lei");
+
+
+            }
+        });
+        holder.btnminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cantitate[0] = Integer.parseInt(holder.quantTxtView.getText().toString());
+                if(cantitate[0]>0) {
+                    cantitate[0]--;
+                    CosActivity.pretTotal-=pret;
+                    Log.d("CosAdapter",CosActivity.pretTotal+"");
+                    txtTotalView.setText(CosActivity.pretTotal+"lei");
+                    //cosActivity.update();
+                }
+
+                if(cantitate[0]==0)holder.itemView.setVisibility(View.GONE);
+
+                comanda.setMenuCount(position,cantitate[0]);
+                holder.quantTxtView.setText(comanda.getMenuCount(position)+"");
+                total[0] = pret*cantitate[0];
+                holder.pretTxtView.setText(total[0]+" lei");
+            }
+        });
 
     }
-//    public View.OnClickListener BtnClick(int position){
-//
-//    }
+
 
     @Override
     public int getItemCount() {
@@ -75,14 +129,16 @@ public class CosAdapter extends RecyclerView.Adapter<CosAdapter.MyViewHolder> {
             this.onMenuListener = onMenuListener;
             itemView.setOnClickListener(this);
             quantTxtView = itemView.findViewById(R.id.quantity);
-            //btn = itemView.findViewById(R.id.btnmeniu);
+            btnplus = itemView.findViewById(R.id.plus);
+            btnminus=itemView.findViewById(R.id.minus);
         }
         TextView nameTxtView;
-        TextView pretTxtView;
         TextView quantTxtView;
         OnMenuListener onMenuListener;
 
-        //Button btn ;
+        TextView pretTxtView;
+
+        Button btnplus, btnminus ;
 
         @Override
         public void onClick(View view) {

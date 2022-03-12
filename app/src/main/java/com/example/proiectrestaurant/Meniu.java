@@ -70,4 +70,12 @@ public class Meniu implements Parcelable {
         parcel.writeInt(idproduse);
         parcel.writeInt(img);
     }
+
+    @Override
+    public String toString() {
+        return "Meniu{" +
+                "nume='" + nume + '\'' +
+                ", pret=" + pret +
+                '}';
+    }
 }

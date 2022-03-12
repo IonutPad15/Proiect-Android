@@ -1,5 +1,6 @@
 package com.example.proiectrestaurant;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHo
         this.meniuri = meniuri;
         this.onMenuListener = onMenuListener;
         this.popup=popup;
+
     }
 
     @NonNull
@@ -47,7 +49,7 @@ public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHo
 
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Meniu meniu = meniuri.get(position);
         holder.itemView.setTag(R.id.meniu_item, meniu.nume);
         holder.nameTxtView.setText(meniu.nume);
@@ -69,6 +71,7 @@ public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHo
                 final int[] cantitate = {comanda.getMenuCount(position)};
                 if(cantitate[0]==0){
                     cantitate[0]++;
+                    CosActivity.pretTotal+=meniu.pret;
                 }
                 pretTxtView.setText(meniu.pret*cantitate[0]+" lei");
                 comanda.setMenuCount(position,cantitate[0]);
@@ -82,6 +85,7 @@ public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHo
                     public void onClick(View view) {
                         cantitate[0] = Integer.parseInt(cantitateTxtView.getText().toString());
                         cantitate[0]++;
+                        CosActivity.pretTotal+=pret;
                         comanda.setMenuCount(position,cantitate[0]);
                         total[0] = pret*cantitate[0];
                         cantitateTxtView.setText(comanda.getMenuCount(position)+"");
@@ -94,8 +98,10 @@ public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHo
                     @Override
                     public void onClick(View view) {
                         cantitate[0] = Integer.parseInt(cantitateTxtView.getText().toString());
-                        if(cantitate[0]>0)
+                        if(cantitate[0]>0) {
                             cantitate[0]--;
+                            CosActivity.pretTotal-=pret;
+                        }
                         comanda.setMenuCount(position,cantitate[0]);
                         cantitateTxtView.setText(comanda.getMenuCount(position)+"");
                         total[0] = pret*cantitate[0];
