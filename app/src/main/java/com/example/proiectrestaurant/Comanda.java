@@ -19,6 +19,15 @@ public class Comanda {
         }
         return _instance;
     }
+
+    public HashMap<Integer, Integer> getMenumap() {
+        return menumap;
+    }
+
+    public void setMenumap(HashMap<Integer, Integer> menumap) {
+        this.menumap = menumap;
+    }
+
     public void setMenuCount(int position, int value){
         menumap.put(position, value);
     }

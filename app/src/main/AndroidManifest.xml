@@ -20,6 +20,7 @@
         <activity android:name=".MeniuriActivity" />
         <activity android:name=".ProduseActivity" />
         <activity android:name=".CosActivity" />
+        <activity android:name=".ComandaActivity" />
     </application>
 
 </manifest>

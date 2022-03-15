@@ -3,12 +3,14 @@ package com.example.proiectrestaurant;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuView;
@@ -24,6 +26,7 @@ public class CosAdapter extends RecyclerView.Adapter<CosAdapter.MyViewHolder> {
     Context context;
     View rootView;
     TextView txtTotalView;
+    Button btnComanda;
     //TextView txtTotalView =CosActivity.txtTotalView;
     public CosAdapter(List<Meniu> meniuri,Action<String> onMenuSelected) {
         this.meniuri = meniuri;
@@ -41,6 +44,7 @@ public class CosAdapter extends RecyclerView.Adapter<CosAdapter.MyViewHolder> {
         context = parent.getContext();
         rootView = ((Activity)context).getWindow().getDecorView().findViewById(android.R.id.content);
         txtTotalView = rootView.findViewById(R.id.total);
+        btnComanda = rootView.findViewById(R.id.btnComanda);
         return new MyViewHolder(view, onMenuListener);
     }
 
@@ -62,6 +66,19 @@ public class CosAdapter extends RecyclerView.Adapter<CosAdapter.MyViewHolder> {
             @Override
             public void onClick(View view) {
 
+            }
+        });
+        btnComanda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(CosActivity.pretTotal!=0) {
+                    String chitanta = Chitanta.generareChitanta();
+                    Log.d("Cos Activity", chitanta);
+                    Intent intent = new Intent(context, ComandaActivity.class);
+                    intent.putExtra(ComandaActivity.CHITANTA_KEY, chitanta);
+                    context.startActivity(intent);
+                }
+                else Toast.makeText(context, "Nu aveti nimic in cos", Toast.LENGTH_SHORT).show();
             }
         });
         double pret = meniu.pret;

@@ -24,6 +24,7 @@ public class CosActivity extends AppCompatActivity implements OnMenuListener{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cos_activity);
+        Button btnComanda = findViewById(R.id.btnComanda);
         RecyclerView recyclerView = findViewById(R.id.meniuriRecycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         //false ca sa fie modul normal, de sus in jos. Daca era true, era de jos in sus
@@ -34,21 +35,7 @@ public class CosActivity extends AppCompatActivity implements OnMenuListener{
 //            Log.d("Cos gold","cos god");
 //            cos_gol.setVisibility(View.VISIBLE);
 //        }
-        Button btnComanda = findViewById(R.id.btnComanda);
-        btnComanda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String chitanta = Chitanta.generareChitanta();
-                if(chitanta.equals("")){
-                    Toast.makeText(CosActivity.this, "Nu aveti nimic in cos" , Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Intent intent = new Intent(CosActivity.this, ComandaActivity.class);
-                    intent.putExtra(ComandaActivity.CHITANTA_KEY,chitanta);
-                    startActivity(intent);
-                }
-            }
-        });
+
     }
 
     public void onMenuClick(int position) {
