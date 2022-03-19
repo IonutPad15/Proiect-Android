@@ -72,10 +72,7 @@ public class CosAdapter extends RecyclerView.Adapter<CosAdapter.MyViewHolder> {
             @Override
             public void onClick(View view) {
                 if(CosActivity.pretTotal!=0) {
-                    String chitanta = Chitanta.generareChitanta();
-                    Log.d("Cos Activity", chitanta);
                     Intent intent = new Intent(context, ComandaActivity.class);
-                    intent.putExtra(ComandaActivity.CHITANTA_KEY, chitanta);
                     context.startActivity(intent);
                 }
                 else Toast.makeText(context, "Nu aveti nimic in cos", Toast.LENGTH_SHORT).show();

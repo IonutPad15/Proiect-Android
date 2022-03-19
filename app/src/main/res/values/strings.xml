@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TheForestMan</string>
+    <string name="longitude">24.160223799999997</string>
+    <string name="latitude">46.4617174</string>
 </resources>

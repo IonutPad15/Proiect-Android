@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class Chitanta {
-    public static String generareChitanta(){
+    public static String generareChitanta(double distance, String time){
+            ComandaActivity cmd = new ComandaActivity();
             StringJoiner rez = new StringJoiner("");
             rez.add("         The Forest Man         \n   Str 1.Decembrie 1918, Nr.15  \n");
             rez.add("    Ludus / Oras Ludus/ Mures  \n             VANZARE\n====================================\n");
@@ -24,6 +25,8 @@ public class Chitanta {
                 }
             }
             rez.add("Total de plata:            " + total + " lei\n");
+            rez.add("Distanta:                  " + (int)distance + "km\n");
+            rez.add("Timp estimativ: " + time + "\n");
             return rez.toString();
     }
 }
