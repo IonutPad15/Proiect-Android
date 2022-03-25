@@ -1,4 +1,4 @@
-package com.example.proiectrestaurant;
+package com.example.proiectrestaurant.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.proiectrestaurant.utils.Comanda;
+import com.example.proiectrestaurant.R;
 
 public class MainActivity extends AppCompatActivity {
     @Override

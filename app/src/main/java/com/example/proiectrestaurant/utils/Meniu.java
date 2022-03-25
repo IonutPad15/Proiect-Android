@@ -1,24 +1,20 @@
-package com.example.proiectrestaurant;
+package com.example.proiectrestaurant.utils;
 
-import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
-import java.util.List;
 
 //Parcelable is a way to package objects
 public class Meniu implements Parcelable {
-    String nume;
-    double pret;
-    int idproduse;
-    int img;
-    ArrayList<Produs> produse;
+    private String nume;
+    private double pret;
+    private int img;
+    private ArrayList<Produs> produse;
     //Image img;
-    public Meniu(String nume, double pret, int idproduse, int img,ArrayList<Produs> produse) {
+    public Meniu(String nume, double pret, int img,ArrayList<Produs> produse) {
         this.nume = nume;
         this.pret = pret;
-        this.idproduse = idproduse;
         this.img = img;
         this.produse = produse;
     }
@@ -26,8 +22,21 @@ public class Meniu implements Parcelable {
     protected Meniu(Parcel in) {
         nume = in.readString();
         pret = in.readDouble();
-        idproduse = in.readInt();
         img = in.readInt();
+        produse = in.createTypedArrayList(Produs.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nume);
+        dest.writeDouble(pret);
+        dest.writeInt(img);
+        dest.writeTypedList(produse);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Meniu> CREATOR = new Creator<Meniu>() {
@@ -50,25 +59,29 @@ public class Meniu implements Parcelable {
         return pret;
     }
 
-    public int getIdproduse() {
-        return idproduse;
-    }
 
     public int getImg() {
         return img;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public ArrayList<Produs> getProduse() {
+        return produse;
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(nume);
-        parcel.writeDouble(pret);
-        parcel.writeInt(idproduse);
-        parcel.writeInt(img);
+    public void setNume(String nume) {
+        this.nume = nume;
+    }
+
+    public void setPret(double pret) {
+        this.pret = pret;
+    }
+
+    public void setImg(int img) {
+        this.img = img;
+    }
+
+    public void setProduse(ArrayList<Produs> produse) {
+        this.produse = produse;
     }
 
     @Override

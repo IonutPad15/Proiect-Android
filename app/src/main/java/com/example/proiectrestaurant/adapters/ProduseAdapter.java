@@ -1,16 +1,17 @@
-package com.example.proiectrestaurant;
+package com.example.proiectrestaurant.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.proiectrestaurant.utils.Produs;
+import com.example.proiectrestaurant.R;
+
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class ProduseAdapter extends RecyclerView.Adapter<ProduseAdapter.MyViewHolder> {
@@ -36,11 +37,11 @@ public class ProduseAdapter extends RecyclerView.Adapter<ProduseAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Produs produs = produse.get(position);
-        holder.itemView.setTag(R.id.produs_item, produs._nume);
-        holder.nameTxtView.setText(produs._nume);
-        holder.gramajTxtView.setText(produs._gramaj+"");
-        holder.umTxtView.setText(produs.unitate_masura);
-        holder.cantitateTxtView.setText(produs._cantitate+"x");
+        holder.itemView.setTag(R.id.produs_item, produs.get_nume());
+        holder.nameTxtView.setText(produs.get_nume());
+        holder.gramajTxtView.setText(produs.get_gramaj()+"");
+        holder.umTxtView.setText(produs.getUnitate_masura());
+        holder.cantitateTxtView.setText(produs.get_cantitate()+"x");
     }
 
     @Override

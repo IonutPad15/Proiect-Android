@@ -1,4 +1,4 @@
-package com.example.proiectrestaurant;
+package com.example.proiectrestaurant.adapters;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -11,6 +11,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.proiectrestaurant.utils.Action;
+import com.example.proiectrestaurant.utils.Comanda;
+import com.example.proiectrestaurant.utils.Meniu;
+import com.example.proiectrestaurant.utils.OnMenuListener;
+import com.example.proiectrestaurant.R;
+import com.example.proiectrestaurant.activities.CosActivity;
 
 import java.util.List;
 
@@ -51,10 +58,10 @@ public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Meniu meniu = meniuri.get(position);
-        holder.itemView.setTag(R.id.meniu_item, meniu.nume);
-        holder.nameTxtView.setText(meniu.nume);
-        holder.pretTxtView.setText(meniu.pret+" lei");
-        holder.imgView.setImageResource(meniu.img);
+        holder.itemView.setTag(R.id.meniu_item, meniu.getNume());
+        holder.nameTxtView.setText(meniu.getNume());
+        holder.pretTxtView.setText(meniu.getPret()+" lei");
+        holder.imgView.setImageResource(meniu.getImg());
         //holder.btn.setOnClickListener(BtnClick(position));
 
         holder.btn.setOnClickListener(new View.OnClickListener() {
@@ -65,20 +72,20 @@ public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHo
                 popup.setContentView(R.layout.adauga_cos_popup);
                 txtCloseView = popup.findViewById(R.id.close);
                 numeMeniuView = popup.findViewById(R.id.nume_meniu);
-                numeMeniuView.setText(meniu.nume);
+                numeMeniuView.setText(meniu.getNume());
                 pretTxtView = popup.findViewById(R.id.pret);
                 cantitateTxtView = popup.findViewById(R.id.quantity);
                 final int[] cantitate = {comanda.getMenuCount(position)};
                 if(cantitate[0]==0){
                     cantitate[0]++;
-                    CosActivity.pretTotal+=meniu.pret;
+                    CosActivity.pretTotal+=meniu.getPret();
                 }
-                pretTxtView.setText(meniu.pret*cantitate[0]+" lei");
+                pretTxtView.setText(meniu.getPret()*cantitate[0]+" lei");
                 comanda.setMenuCount(position,cantitate[0]);
                 cantitateTxtView.setText(comanda.getMenuCount(position)+"");
                 Button btnPlus, btnMinus;
                 btnPlus=popup.findViewById(R.id.plus);
-                double pret = meniu.pret;
+                double pret = meniu.getPret();
                 final double[] total = {0};
                 btnPlus.setOnClickListener(new View.OnClickListener() {
                     @Override

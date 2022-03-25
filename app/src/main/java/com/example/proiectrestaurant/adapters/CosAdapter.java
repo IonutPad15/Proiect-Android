@@ -1,4 +1,4 @@
-package com.example.proiectrestaurant;
+package com.example.proiectrestaurant.adapters;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -13,8 +13,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.proiectrestaurant.utils.Action;
+import com.example.proiectrestaurant.utils.Comanda;
+import com.example.proiectrestaurant.utils.Meniu;
+import com.example.proiectrestaurant.utils.OnMenuListener;
+import com.example.proiectrestaurant.R;
+import com.example.proiectrestaurant.activities.ComandaActivity;
+import com.example.proiectrestaurant.activities.CosActivity;
 
 import java.util.List;
 
@@ -51,11 +58,11 @@ public class CosAdapter extends RecyclerView.Adapter<CosAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Meniu meniu = meniuri.get(position);
-        holder.itemView.setTag(R.id.cos_item, meniu.nume);
-        holder.nameTxtView.setText(meniu.nume);
+        holder.itemView.setTag(R.id.cos_item, meniu.getNume());
+        holder.nameTxtView.setText(meniu.getNume());
         Comanda comanda = Comanda.getInstance();
         holder.quantTxtView.setText(comanda.getMenuCount(position)+"");
-        holder.pretTxtView.setText(meniu.pret*comanda.getMenuCount(position)+" lei");
+        holder.pretTxtView.setText(meniu.getPret()*comanda.getMenuCount(position)+" lei");
         if(Comanda.getInstance().getMenuCount(position)==0) {
             holder.itemView.setVisibility(View.GONE);
         }
@@ -78,7 +85,7 @@ public class CosAdapter extends RecyclerView.Adapter<CosAdapter.MyViewHolder> {
                 else Toast.makeText(context, "Nu aveti nimic in cos", Toast.LENGTH_SHORT).show();
             }
         });
-        double pret = meniu.pret;
+        double pret = meniu.getPret();
         final int[] cantitate = {comanda.getMenuCount(position)};
         final double[] total = {0};
         txtTotalView.setText(CosActivity.pretTotal+"lei");

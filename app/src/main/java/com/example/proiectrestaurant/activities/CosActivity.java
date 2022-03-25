@@ -1,4 +1,4 @@
-package com.example.proiectrestaurant;
+package com.example.proiectrestaurant.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,19 +6,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
+import com.example.proiectrestaurant.adapters.CosAdapter;
+import com.example.proiectrestaurant.utils.Helper;
+import com.example.proiectrestaurant.utils.Meniu;
+import com.example.proiectrestaurant.utils.OnMenuListener;
+import com.example.proiectrestaurant.R;
 
-import java.util.HashMap;
 import java.util.List;
 
-public class CosActivity extends AppCompatActivity implements OnMenuListener{
+public class CosActivity extends AppCompatActivity implements OnMenuListener {
     public static double pretTotal=0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class CosActivity extends AppCompatActivity implements OnMenuListener{
         Intent intent = new Intent(this, ProduseActivity.class);
         List<Meniu> meniuri = Helper.getMeniuri();
         Meniu meniu = meniuri.get(position);
-        intent.putExtra(ProduseActivity.PRODUSE_KEY,meniu.produse);
+        intent.putExtra(ProduseActivity.PRODUSE_KEY,meniu.getProduse());
         intent.putExtra(ProduseActivity.MENU_KEY,meniu);
         intent.putExtra(ProduseActivity.MENU_ID,position);
         startActivity(intent);

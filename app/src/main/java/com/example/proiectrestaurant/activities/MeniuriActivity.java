@@ -1,17 +1,20 @@
-package com.example.proiectrestaurant;
+package com.example.proiectrestaurant.activities;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.proiectrestaurant.utils.Helper;
+import com.example.proiectrestaurant.utils.Meniu;
+import com.example.proiectrestaurant.adapters.MeniuriAdapter;
+import com.example.proiectrestaurant.utils.OnMenuListener;
+import com.example.proiectrestaurant.R;
 
 import java.util.List;
 
@@ -53,7 +56,7 @@ public class MeniuriActivity extends AppCompatActivity implements OnMenuListener
         Intent intent = new Intent(this, ProduseActivity.class);
         List<Meniu> meniuri = Helper.getMeniuri();
         Meniu meniu = meniuri.get(position);
-        intent.putExtra(ProduseActivity.PRODUSE_KEY,meniu.produse);
+        intent.putExtra(ProduseActivity.PRODUSE_KEY,meniu.getProduse());
         intent.putExtra(ProduseActivity.MENU_KEY,meniu);
         intent.putExtra(ProduseActivity.MENU_ID,position);
         startActivity(intent);

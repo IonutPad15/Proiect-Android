@@ -1,4 +1,10 @@
-package com.example.proiectrestaurant;
+package com.example.proiectrestaurant.utils;
+
+import com.example.proiectrestaurant.activities.ComandaActivity;
+import com.example.proiectrestaurant.activities.CosActivity;
+import com.example.proiectrestaurant.utils.Comanda;
+import com.example.proiectrestaurant.utils.Helper;
+import com.example.proiectrestaurant.utils.Meniu;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

@@ -1,4 +1,4 @@
-package com.example.proiectrestaurant;
+package com.example.proiectrestaurant.activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -20,18 +20,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.example.proiectrestaurant.threads.ClientThread;
+import com.example.proiectrestaurant.utils.Chitanta;
+import com.example.proiectrestaurant.utils.Comanda;
+import com.example.proiectrestaurant.utils.JavaMailAPI;
+import com.example.proiectrestaurant.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.StringJoiner;
 
 public class ComandaActivity extends AppCompatActivity {
     public final static String CHITANTA_KEY = "chitanta";
@@ -44,6 +46,9 @@ public class ComandaActivity extends AppCompatActivity {
     private double distance;
     Button btnLocation;
     TextView txt1, txt2, txt3, txt4, txt5;
+    EditText edtIP;
+    EditText edtPort;
+    TextView txtResult;
     FusedLocationProviderClient fusedLocationProviderClient;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +58,9 @@ public class ComandaActivity extends AppCompatActivity {
         email = findViewById(R.id.mailtxt);
         txtPret = findViewById(R.id.total);
         txtPret.setText(String.valueOf(CosActivity.pretTotal)+" lei");
+        edtIP = findViewById(R.id.editTextIP);
+        edtPort = findViewById(R.id.editTextPort);
+        txtResult = findViewById(R.id.textViewResult);
         btnConfirma =findViewById(R.id.btnConfirma);
         btnConfirma.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +156,7 @@ public class ComandaActivity extends AppCompatActivity {
                         time= calculateTime(distance);
                         Log.d("Timp",time);
                         chitanta = Chitanta.generareChitanta(distance, time);
-
+                        new ClientThread(edtIP.getText().toString(), Integer.valueOf(edtPort.getText().toString()),chitanta,txtResult).start();
 
                     } catch (IOException e) {
                         e.printStackTrace();

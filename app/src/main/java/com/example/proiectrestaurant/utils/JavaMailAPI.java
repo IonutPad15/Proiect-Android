@@ -1,7 +1,9 @@
-package com.example.proiectrestaurant;
+package com.example.proiectrestaurant.utils;
 
 import android.content.Context;
 import android.os.AsyncTask;
+
+import com.example.proiectrestaurant.utils.Utils;
 
 import java.util.Properties;
 

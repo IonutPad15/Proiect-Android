@@ -1,4 +1,4 @@
-package com.example.proiectrestaurant;
+package com.example.proiectrestaurant.activities;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -15,6 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.proiectrestaurant.utils.Comanda;
+import com.example.proiectrestaurant.utils.Meniu;
+import com.example.proiectrestaurant.adapters.ProduseAdapter;
+import com.example.proiectrestaurant.R;
+
 public class ProduseActivity extends AppCompatActivity {
     public final static String MENU_KEY = "meniu";
     public final static String PRODUSE_KEY = "produse";
@@ -30,19 +35,19 @@ public class ProduseActivity extends AppCompatActivity {
             meniu = getIntent().getParcelableExtra(MENU_KEY);
             position = getIntent().getIntExtra(MENU_ID,0);
             Log.d("Meniu",position+"");
-            meniu.produse = getIntent().getParcelableArrayListExtra(PRODUSE_KEY);
-            Toast.makeText(ProduseActivity.this, meniu.nume + " " + meniu.pret + " " , Toast.LENGTH_SHORT).show();
-            Log.d("ProduseActivity",meniu.produse.get(1)._nume+" ");
+            meniu.setProduse(getIntent().getParcelableArrayListExtra(PRODUSE_KEY));
+            Toast.makeText(ProduseActivity.this, meniu.getNume() + " " + meniu.getPret() + " " , Toast.LENGTH_SHORT).show();
+            Log.d("ProduseActivity",meniu.getProduse().get(1).get_nume()+" ");
             setContentView(R.layout.produse_activity);
             ImageView imgView = findViewById(R.id.meniu_image);
-            imgView.setImageResource(meniu.img);
+            imgView.setImageResource(meniu.getImg());
             TextView numeMeniuView =findViewById(R.id.nume_meniu);
-            numeMeniuView.setText(meniu.nume);
+            numeMeniuView.setText(meniu.getNume());
             TextView pretTxtView = findViewById(R.id.pret);
-            pretTxtView.setText(meniu.pret+" lei");
+            pretTxtView.setText(meniu.getPret()+" lei");
             RecyclerView recyclerView = findViewById(R.id.produseRecycleView);
             recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-            recyclerView.setAdapter(new ProduseAdapter(meniu.produse));
+            recyclerView.setAdapter(new ProduseAdapter(meniu.getProduse()));
         }
         findViewById(R.id.shop_icon).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,20 +63,20 @@ public class ProduseActivity extends AppCompatActivity {
         popup.setContentView(R.layout.adauga_cos_popup);
         txtCloseView = popup.findViewById(R.id.close);
         numeMeniuView = popup.findViewById(R.id.nume_meniu);
-        numeMeniuView.setText(meniu.nume);
+        numeMeniuView.setText(meniu.getNume());
         pretTxtView = popup.findViewById(R.id.pret);
         cantitateTxtView = popup.findViewById(R.id.quantity);
         final int[] cantitate = {comanda.getMenuCount(position)};
         if(cantitate[0]==0){
             cantitate[0]++;
-            CosActivity.pretTotal+=meniu.pret;
+            CosActivity.pretTotal+=meniu.getPret();
         }
-        pretTxtView.setText(meniu.pret*cantitate[0]+" lei");
+        pretTxtView.setText(meniu.getPret()*cantitate[0]+" lei");
         comanda.setMenuCount(position,cantitate[0]);
         cantitateTxtView.setText(comanda.getMenuCount(position)+"");
         Button btnPlus, btnMinus;
         btnPlus=popup.findViewById(R.id.plus);
-        double pret = meniu.pret;
+        double pret = meniu.getPret();
         final double[] total = {0};
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
