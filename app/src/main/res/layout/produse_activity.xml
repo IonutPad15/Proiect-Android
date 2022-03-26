@@ -22,40 +22,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id = "@+id/produseRecycleView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="40" />
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_weight="20"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="Pret:"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_weight="1"
-            android:gravity="left"/>
-        <TextView
+        android:id="@+id/produse_activity"
+        android:orientation="vertical"
+        android:background="@drawable/produse_backround"
+        android:layout_weight="60">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id = "@+id/produseRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="40" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_weight="20"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Pret:"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_weight="1"
+                android:gravity="left"/>
+            <TextView
 
-            android:id = "@+id/pret"
-            android:textSize="18sp"
-            android:textColor="@color/black"
+                android:id = "@+id/pret"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left" />
+        </LinearLayout>
+
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="left" />
+            android:onClick="ShowPopUp"
+            android:text="Adauga in cos"
+            android:textColor="@color/black" />
     </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="ShowPopUp"
-        android:text="Adauga in cos"
-        android:textColor="@color/black" />
 </LinearLayout>

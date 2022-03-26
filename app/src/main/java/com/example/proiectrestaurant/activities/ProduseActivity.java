@@ -1,7 +1,10 @@
 package com.example.proiectrestaurant.activities;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,7 +39,6 @@ public class ProduseActivity extends AppCompatActivity {
             position = getIntent().getIntExtra(MENU_ID,0);
             Log.d("Meniu",position+"");
             meniu.setProduse(getIntent().getParcelableArrayListExtra(PRODUSE_KEY));
-            Toast.makeText(ProduseActivity.this, meniu.getNume() + " " + meniu.getPret() + " " , Toast.LENGTH_SHORT).show();
             Log.d("ProduseActivity",meniu.getProduse().get(1).get_nume()+" ");
             setContentView(R.layout.produse_activity);
             ImageView imgView = findViewById(R.id.meniu_image);
@@ -48,6 +50,9 @@ public class ProduseActivity extends AppCompatActivity {
             RecyclerView recyclerView = findViewById(R.id.produseRecycleView);
             recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
             recyclerView.setAdapter(new ProduseAdapter(meniu.getProduse()));
+
+            View produseview= findViewById(R.id.produse_activity);
+            produseview.getBackground().setAlpha(120);
         }
         findViewById(R.id.shop_icon).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,11 +61,15 @@ public class ProduseActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        findViewById(R.id.back_icon).setVisibility(View.INVISIBLE);
     }
     public void ShowPopUp(View view){
         Comanda comanda = Comanda.getInstance();
         TextView txtCloseView,numeMeniuView, pretTxtView, cantitateTxtView;
         popup.setContentView(R.layout.adauga_cos_popup);
+        View popupview = popup.findViewById(R.id.popup);
+        popupview.getBackground().setAlpha(120);
+
         txtCloseView = popup.findViewById(R.id.close);
         numeMeniuView = popup.findViewById(R.id.nume_meniu);
         numeMeniuView.setText(meniu.getNume());

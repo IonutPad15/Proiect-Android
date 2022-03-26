@@ -26,18 +26,14 @@ public class CosActivity extends AppCompatActivity implements OnMenuListener {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cos_activity);
+        View cosview= findViewById(R.id.cos_activity);
+        cosview.getBackground().setAlpha(120);
         Button btnComanda = findViewById(R.id.btnComanda);
         RecyclerView recyclerView = findViewById(R.id.meniuriRecycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         //false ca sa fie modul normal, de sus in jos. Daca era true, era de jos in sus
         //Adapter- modalitatea prin care ii spunem lui RecyclerView ce sa afiseze pe ecan
         recyclerView.setAdapter(new CosAdapter((Helper.getMeniuri()),this));
-//        if(recyclerView.getAdapter().getItemViewType(0)==View.GONE){
-//            TextView cos_gol = findViewById(R.id.cos_gol);
-//            Log.d("Cos gold","cos god");
-//            cos_gol.setVisibility(View.VISIBLE);
-//        }
-
     }
 
     public void onMenuClick(int position) {

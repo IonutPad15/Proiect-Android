@@ -1,5 +1,7 @@
 package com.example.proiectrestaurant.adapters;
 
+import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,13 +26,7 @@ public class ProduseAdapter extends RecyclerView.Adapter<ProduseAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.produse_item,parent,false);
-        /*view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onMenuSelected.perform((String) v.getTag(R.id.meniu_item));
 
-            }
-        });*/
         return new MyViewHolder(view);
     }
 

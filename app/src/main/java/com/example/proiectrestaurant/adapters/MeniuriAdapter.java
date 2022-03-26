@@ -1,7 +1,10 @@
 package com.example.proiectrestaurant.adapters;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +29,10 @@ public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHo
     List<Meniu> meniuri;
     Dialog popup;
     Action<String> onMenuSelected;
-    OnMenuListener onMenuListener ;
-    public MeniuriAdapter(List<Meniu> meniuri,Action<String> onMenuSelected) {
-        this.meniuri = meniuri;
+    Context context;
+    View rootView;
 
-        this.onMenuSelected = onMenuSelected;
-    }
+    OnMenuListener onMenuListener ;
     public MeniuriAdapter(List<Meniu> meniuri, OnMenuListener onMenuListener, Dialog popup) {
         this.meniuri = meniuri;
         this.onMenuListener = onMenuListener;
@@ -43,14 +44,8 @@ public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.meniuri_item,parent,false);
-        /*view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onMenuSelected.perform((String) v.getTag(R.id.meniu_item));
-
-            }
-        });
-        return new MyViewHolder(view);*/
+        context = parent.getContext();
+        rootView = ((Activity)context).getWindow().getDecorView().findViewById(android.R.id.content);
         return new MyViewHolder(view, onMenuListener);
     }
 
@@ -70,6 +65,12 @@ public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHo
                 Comanda comanda = Comanda.getInstance();
                 TextView txtCloseView,numeMeniuView, pretTxtView, cantitateTxtView;
                 popup.setContentView(R.layout.adauga_cos_popup);
+                View popupview= popup.findViewById(R.id.popup);
+
+
+                Drawable res = rootView.getResources().getDrawable(meniu.getImg());
+                popupview.setBackground(res);
+                popupview.getBackground().setAlpha(120);
                 txtCloseView = popup.findViewById(R.id.close);
                 numeMeniuView = popup.findViewById(R.id.nume_meniu);
                 numeMeniuView.setText(meniu.getNume());
@@ -140,13 +141,7 @@ public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHo
     static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{//mai eficient decand findViewById
 
 
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            nameTxtView = itemView.findViewById(R.id.nume);
-            pretTxtView = itemView.findViewById(R.id.pret);
-            imgView = itemView.findViewById(R.id.meniu_image);
 
-        }
         public MyViewHolder(@NonNull View itemView, OnMenuListener onMenuListener) {
             super(itemView);
             nameTxtView = itemView.findViewById(R.id.nume);
@@ -162,7 +157,7 @@ public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHo
         ImageView imgView;
         OnMenuListener onMenuListener;
 
-        Button btn ;
+        TextView btn ;
 
         @Override
         public void onClick(View view) {

@@ -26,14 +26,15 @@
         android:layout_weight="1"
         android:gravity="left"
         android:layout_gravity="center"/>
-    <Button
+    <TextView
         android:id="@+id/btnmeniu"
-
         android:text="Adauga in cos"
         android:textSize="18sp"
         android:textColor="@color/black"
+        android:background="@drawable/addbackround"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="left"/>
+        android:gravity="center"
+        android:layout_gravity="center_vertical"/>
 </LinearLayout>

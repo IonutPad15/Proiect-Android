@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="350dp"
+    android:id="@+id/popup"
     android:layout_gravity="center"
+    android:background="@drawable/popup_backround"
     android:layout_height="350dp">
     <TextView
         android:id="@+id/close"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:text="X"
         android:textStyle="bold"
         android:layout_gravity="end"
@@ -38,6 +40,7 @@
             android:layout_height="30dp"
             android:textColor="@color/black"
             android:layout_weight="1"
+            android:background="@color/green"
             android:gravity="center"
             android:layout_gravity="center"
             android:textStyle="bold" />
@@ -56,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Meniu"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_weight="9"
             android:textSize="18sp"
             android:gravity="center"
@@ -75,14 +78,14 @@
             android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_weight="1"
             android:gravity="left"/>
         <TextView
 
             android:id = "@+id/pret"
             android:textSize="18sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,7 +38,7 @@ import java.util.Locale;
 
 public class ComandaActivity extends AppCompatActivity {
     public final static String CHITANTA_KEY = "chitanta";
-    private EditText email;
+    private EditText editMail;
     private Button btnConfirma;
     private  String chitanta;
 
@@ -55,7 +56,9 @@ public class ComandaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comanda_activity);
 
-        email = findViewById(R.id.mailtxt);
+        View comandaview= findViewById(R.id.comanda_activity);
+        comandaview.getBackground().setAlpha(120);
+        editMail = findViewById(R.id.mailtxt);
         txtPret = findViewById(R.id.total);
         txtPret.setText(String.valueOf(CosActivity.pretTotal)+" lei");
         edtIP = findViewById(R.id.editTextIP);
@@ -108,7 +111,7 @@ public class ComandaActivity extends AppCompatActivity {
         btnConfirma.setEnabled(false);
     }
     private void senEmail() {
-        String mEmail = email.getText().toString();
+        String mEmail = editMail.getText().toString();
         String mSubject = "TheForestMan";
         String mMessage = chitanta;
 
@@ -120,51 +123,58 @@ public class ComandaActivity extends AppCompatActivity {
 
     @SuppressLint("MissingPermission")
     private void getLocation() {
-        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-            @Override
-            public void onComplete(@NonNull Task<Location> task) {
-                Location location = task.getResult();
-                if (location != null) {
-                    try {
-                        Geocoder geocoder = new Geocoder(ComandaActivity.this, Locale.getDefault());
-                        List<Address> adresses = geocoder.getFromLocation(
-                                location.getLatitude(), location.getLongitude(), 1
-                        );
-                        txt1.setText(Html.fromHtml(
-                                "<font color ='#6200EE'><b>Latitude :</b></font>"
-                                        + adresses.get(0).getLatitude()
-                        ));
-                        txt2.setText(Html.fromHtml(
-                                "<font color ='#6200EE'><b>Longitude :</b></font>"
-                                        + adresses.get(0).getLongitude()
-                        ));
-                        txt3.setText(Html.fromHtml(
-                                "<font color ='#6200EE'><b>Country Name :</b></font>"
-                                        + adresses.get(0).getCountryName()
-                        ));
-                        txt4.setText(Html.fromHtml(
-                                "<font color ='#6200EE'><b>Locality :</b></font>"
-                                        + adresses.get(0).getLocality()
-                        ));
-                        txt5.setText(Html.fromHtml(
-                                "<font color ='#6200EE'><b>Adress :</b></font>"
-                                        + adresses.get(0).getAddressLine(0)
-                        ));
-                        btnConfirma.setEnabled(true);
-                        distance = calculateDistance(adresses.get(0).getLatitude(), adresses.get(0).getLongitude());
-                        Log.d("Distanta",distance+"");
-                        time= calculateTime(distance);
-                        Log.d("Timp",time);
-                        chitanta = Chitanta.generareChitanta(distance, time);
-                        new ClientThread(edtIP.getText().toString(), Integer.valueOf(edtPort.getText().toString()),chitanta,txtResult).start();
+        String mail = editMail.getText().toString();
+        if(mail.equals("") || !mail.contains("@"))
+            Toast.makeText(ComandaActivity.this,"Dati o adresa de email valida",Toast.LENGTH_SHORT).show();
+        else {
+            fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                    Location location = task.getResult();
+                    if (location != null) {
+                        try {
+                            Geocoder geocoder = new Geocoder(ComandaActivity.this, Locale.getDefault());
+                            List<Address> adresses = geocoder.getFromLocation(
+                                    location.getLatitude(), location.getLongitude(), 1
+                            );
+                            txt1.setText(Html.fromHtml(
+                                    "<font color ='#6200EE'><b>Latitude :</b></font>"
+                                            + adresses.get(0).getLatitude()
+                            ));
+                            txt2.setText(Html.fromHtml(
+                                    "<font color ='#6200EE'><b>Longitude :</b></font>"
+                                            + adresses.get(0).getLongitude()
+                            ));
+                            txt3.setText(Html.fromHtml(
+                                    "<font color ='#6200EE'><b>Country Name :</b></font>"
+                                            + adresses.get(0).getCountryName()
+                            ));
+                            txt4.setText(Html.fromHtml(
+                                    "<font color ='#6200EE'><b>Locality :</b></font>"
+                                            + adresses.get(0).getLocality()
+                            ));
+                            txt5.setText(Html.fromHtml(
+                                    "<font color ='#6200EE'><b>Adress :</b></font>"
+                                            + adresses.get(0).getAddressLine(0)
+                            ));
+                            btnConfirma.setEnabled(true);
+                            distance = calculateDistance(adresses.get(0).getLatitude(), adresses.get(0).getLongitude());
+                            Log.d("Distanta", distance + "");
+                            time = calculateTime(distance);
+                            Log.d("Timp", time);
+                            chitanta = Chitanta.generareChitanta(distance, time);
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                            String msg = mail + "#" + chitanta;
+                            new ClientThread(edtIP.getText().toString(), Integer.valueOf(edtPort.getText().toString()), msg, txtResult).start();
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
                     }
-
                 }
-            }
-        });
+            });
+        }
     }
     private String calculateTime(double distance)
     {

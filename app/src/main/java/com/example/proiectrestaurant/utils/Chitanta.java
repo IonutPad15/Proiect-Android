@@ -31,7 +31,7 @@ public class Chitanta {
                 }
             }
             rez.add("Total de plata:            " + total + " lei\n");
-            rez.add("Distanta:                  " + (int)distance + "km\n");
+            rez.add("Distanta:                  " + (int)distance + " km\n");
             rez.add("Timp estimativ: " + time + "\n");
             return rez.toString();
     }

@@ -11,10 +11,11 @@
         android:gravity="center"
         android:layout_weight="80"
         android:orientation="horizontal">
-        <Button
+        <TextView
             android:id="@+id/minus"
-            android:layout_width="30dp"
+            android:layout_width="18sp"
             android:layout_height="wrap_content"
+            android:background="@drawable/circlecolorbcrnd"
             android:text="-"
             android:layout_weight="7"
             android:textColor="@color/black"
@@ -30,10 +31,11 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:textStyle="bold" />
-        <Button
+        <TextView
             android:id="@+id/plus"
-            android:layout_width="30dp"
+            android:layout_width="18sp"
             android:layout_height="wrap_content"
+            android:background="@drawable/circlecolorbcrnd"
             android:text="+"
             android:textColor="@color/black"
             android:layout_weight="7"

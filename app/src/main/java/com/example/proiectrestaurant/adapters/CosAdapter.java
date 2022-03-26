@@ -136,13 +136,6 @@ public class CosAdapter extends RecyclerView.Adapter<CosAdapter.MyViewHolder> {
     static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{//mai eficient decand findViewById
 
 
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            nameTxtView = itemView.findViewById(R.id.nume_meniu);
-            pretTxtView = itemView.findViewById(R.id.pret);
-
-        }
         public MyViewHolder(@NonNull View itemView, OnMenuListener onMenuListener) {
             super(itemView);
             nameTxtView = itemView.findViewById(R.id.nume_meniu);
@@ -158,8 +151,8 @@ public class CosAdapter extends RecyclerView.Adapter<CosAdapter.MyViewHolder> {
         OnMenuListener onMenuListener;
 
         TextView pretTxtView;
-
-        Button btnplus, btnminus ;
+        TextView btnplus, btnminus ;
+        //Button btnplus, btnminus ;
 
         @Override
         public void onClick(View view) {
