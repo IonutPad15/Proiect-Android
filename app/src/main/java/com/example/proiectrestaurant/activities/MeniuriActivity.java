@@ -19,7 +19,7 @@ import com.example.proiectrestaurant.R;
 import java.util.List;
 
 public class MeniuriActivity extends AppCompatActivity implements OnMenuListener {
-    Dialog popup;
+    private Dialog popup;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

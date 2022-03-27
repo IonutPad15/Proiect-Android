@@ -26,13 +26,13 @@ import java.util.List;
 
 
 public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHolder> {
-    List<Meniu> meniuri;
-    Dialog popup;
-    Action<String> onMenuSelected;
-    Context context;
-    View rootView;
+    private List<Meniu> meniuri;
+    private Dialog popup;
+    private Action<String> onMenuSelected;
+    private Context context;
+    private View rootView;
 
-    OnMenuListener onMenuListener ;
+    private OnMenuListener onMenuListener ;
     public MeniuriAdapter(List<Meniu> meniuri, OnMenuListener onMenuListener, Dialog popup) {
         this.meniuri = meniuri;
         this.onMenuListener = onMenuListener;
@@ -128,9 +128,6 @@ public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHo
 
 
     }
-//    public View.OnClickListener BtnClick(int position){
-//
-//    }
 
 
     @Override
@@ -152,12 +149,12 @@ public class MeniuriAdapter extends RecyclerView.Adapter<MeniuriAdapter.MyViewHo
 
             btn = itemView.findViewById(R.id.btnmeniu);
         }
-        TextView nameTxtView;
-        TextView pretTxtView;
-        ImageView imgView;
-        OnMenuListener onMenuListener;
+        private TextView nameTxtView;
+        private TextView pretTxtView;
+        private ImageView imgView;
+        private OnMenuListener onMenuListener;
 
-        TextView btn ;
+        private TextView btn ;
 
         @Override
         public void onClick(View view) {

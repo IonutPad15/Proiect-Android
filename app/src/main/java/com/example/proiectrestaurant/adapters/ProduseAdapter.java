@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 
 public class ProduseAdapter extends RecyclerView.Adapter<ProduseAdapter.MyViewHolder> {
-    ArrayList<Produs> produse;
+    private ArrayList<Produs> produse;
     public ProduseAdapter(ArrayList<Produs> produse) {
         this.produse = produse;
     }
@@ -58,10 +58,10 @@ public class ProduseAdapter extends RecyclerView.Adapter<ProduseAdapter.MyViewHo
 
         }
 
-        TextView nameTxtView;
-        TextView gramajTxtView;
-        TextView cantitateTxtView;
-        TextView umTxtView;
+        private TextView nameTxtView;
+        private TextView gramajTxtView;
+        private TextView cantitateTxtView;
+        private TextView umTxtView;
         //ImageView imgView;
 
     }

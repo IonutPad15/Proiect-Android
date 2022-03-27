@@ -27,18 +27,14 @@ import java.util.List;
 
 
 public class CosAdapter extends RecyclerView.Adapter<CosAdapter.MyViewHolder> {
-    List<Meniu> meniuri;
-    Action<String> onMenuSelected;
-    OnMenuListener onMenuListener ;
-    Context context;
-    View rootView;
-    TextView txtTotalView;
-    Button btnComanda;
+    private List<Meniu> meniuri;
+    private Action<String> onMenuSelected;
+    private OnMenuListener onMenuListener ;
+    private Context context;
+    private View rootView;
+    private TextView txtTotalView;
+    private Button btnComanda;
     //TextView txtTotalView =CosActivity.txtTotalView;
-    public CosAdapter(List<Meniu> meniuri,Action<String> onMenuSelected) {
-        this.meniuri = meniuri;
-        this.onMenuSelected = onMenuSelected;
-    }
     public CosAdapter(List<Meniu> meniuri, OnMenuListener onMenuListener) {
         this.meniuri = meniuri;
         this.onMenuListener = onMenuListener;
@@ -146,12 +142,12 @@ public class CosAdapter extends RecyclerView.Adapter<CosAdapter.MyViewHolder> {
             btnplus = itemView.findViewById(R.id.plus);
             btnminus=itemView.findViewById(R.id.minus);
         }
-        TextView nameTxtView;
-        TextView quantTxtView;
-        OnMenuListener onMenuListener;
+        private TextView nameTxtView;
+        private TextView quantTxtView;
+        private OnMenuListener onMenuListener;
 
-        TextView pretTxtView;
-        TextView btnplus, btnminus ;
+        private TextView pretTxtView;
+        private TextView btnplus, btnminus ;
         //Button btnplus, btnminus ;
 
         @Override

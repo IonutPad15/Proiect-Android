@@ -27,9 +27,9 @@ public class ProduseActivity extends AppCompatActivity {
     public final static String MENU_KEY = "meniu";
     public final static String PRODUSE_KEY = "produse";
     public final static String MENU_ID = "meniuid";
-    Meniu meniu;
-    Dialog popup;
-    int position;
+    private Meniu meniu;
+    private Dialog popup;
+    private int position;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

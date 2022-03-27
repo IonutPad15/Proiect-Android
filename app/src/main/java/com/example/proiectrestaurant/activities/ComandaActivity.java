@@ -45,12 +45,12 @@ public class ComandaActivity extends AppCompatActivity {
     private TextView txtPret;
     private String time;
     private double distance;
-    Button btnLocation;
-    TextView txt1, txt2, txt3, txt4, txt5;
-    EditText edtIP;
-    EditText edtPort;
-    TextView txtResult;
-    FusedLocationProviderClient fusedLocationProviderClient;
+    private Button btnLocation;
+    private TextView txt1, txt2, txt3, txt4, txt5;
+    private EditText edtIP;
+    private EditText edtPort;
+    private TextView txtResult;
+    private FusedLocationProviderClient fusedLocationProviderClient;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -228,11 +228,4 @@ public class ComandaActivity extends AppCompatActivity {
         return (rad * 180.0 / Math.PI);
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public double getDistance() {
-        return distance;
-    }
 }
